@@ -10,4 +10,7 @@ if (!globalThis.crypto) {
 export default defineConfig({
     base: '/react-portfolio/', // 👈 this is the fix
     plugins: [react(), tsconfigPaths()],
+    build: {
+        sourcemap: false, // disable source maps in production
+    }
 });
