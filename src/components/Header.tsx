@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import React, { useRef } from "react";
+import profileImage from "@/assets/profile_pic.jpg";
 
 function Header() {
   const isMobile = useRef<boolean>(window.innerWidth < 768);
@@ -28,7 +29,7 @@ function Header() {
           </Typography>
         </Box>
         <Avatar
-          src={"src/assets/profile_pic.jpg"}
+          src={profileImage}
           sx={{ width: 75, height: 75, cursor: "pointer" }}
           onClick={() =>
             window.open(

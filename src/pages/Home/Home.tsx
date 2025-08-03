@@ -13,7 +13,7 @@ import { useColorScheme } from "@mui/material/styles";
 import { blueGrey, grey } from "@mui/material/colors";
 import useDarkMode from "@/hooks/darkModeHook";
 import ColorModeIconDropdown from "@/theme/ColorModeIconDropdown";
-// import heroImage from "@/assets/open_pic.jpg";
+import heroImage from "@/assets/open_pic.jpg";
 
 export default function Home() {
   const [showHeaderContent, setShowHeaderContent] = useState<boolean>(false);
@@ -221,7 +221,7 @@ export default function Home() {
       >
         <Grid size={{ xs: 12, md: 4 }}>
           <img
-            src={"src/assets/open_pic.jpg"}
+            src={heroImage}
             alt="my pic"
             loading="lazy"
             className={styles.openPic}
@@ -236,7 +236,11 @@ export default function Home() {
                 paddingInline: 2,
                 paddingBlock: 1,
                 transition: "box-shadow 0.3s ease",
-                "&:hover": { boxShadow: 2 },
+                "&:hover": {
+                  boxShadow: darkMode
+                    ? "0 0px 2px 2px rgba(255, 255, 255, 0.1)"
+                    : 2,
+                },
                 cursor: "pointer",
               }}
               key={i}
@@ -247,7 +251,9 @@ export default function Home() {
                 marginBottom={1}
                 text={para}
                 highlight={AboutMe.highlights}
-                highlightProps={{ sx: { fontWeight: 550 } }}
+                highlightProps={{
+                  sx: { fontWeight: 550, color: darkMode ? "whitesmoke" : "" },
+                }}
                 color={darkMode ? blueGrey[100] : blueGrey[900]}
               />
             </Paper>
@@ -293,8 +299,8 @@ export default function Home() {
                     (infoType) =>
                       exp[infoType.name] && (
                         <Grid
-                          display="flex"
                           key={infoType.name}
+                          display="flex"
                           gap={1}
                           flexWrap={"wrap"}
                         >
@@ -343,7 +349,12 @@ export default function Home() {
                         key={i}
                         text={resp}
                         highlight={exp.highlight}
-                        highlightProps={{ sx: { fontWeight: 550 } }}
+                        highlightProps={{
+                          sx: {
+                            fontWeight: 550,
+                            color: darkMode ? "whitesmoke" : "",
+                          },
+                        }}
                         color={darkMode ? blueGrey[100] : blueGrey[900]}
                         component="li"
                       />
@@ -388,7 +399,9 @@ export default function Home() {
                 variant="body1"
                 text={project.intro}
                 highlight={project.introHighlights}
-                highlightProps={{ sx: { fontWeight: 550 } }}
+                highlightProps={{
+                  sx: { fontWeight: 550, color: darkMode ? "whitesmoke" : "" },
+                }}
               />
               <Grid>
                 <ul style={{ paddingLeft: 20, marginBlock: 0 }}>
@@ -398,7 +411,12 @@ export default function Home() {
                       text={work}
                       component={"li"}
                       highlight={project.highlights}
-                      highlightProps={{ sx: { fontWeight: 550 } }}
+                      highlightProps={{
+                        sx: {
+                          fontWeight: 550,
+                          color: darkMode ? "whitesmoke" : "",
+                        },
+                      }}
                       color={darkMode ? blueGrey[100] : blueGrey[900]}
                     />
                   ))}
@@ -417,7 +435,7 @@ export default function Home() {
         spacing={2}
       >
         {Education.map((edu, i) => (
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid key={i} size={{ xs: 12, md: 6 }}>
             <Card
               className={
                 focusedCardKey == `education-${i}` ? styles.cardFocused : ""
@@ -451,7 +469,10 @@ export default function Home() {
                 Courses:
               </Typography>
               {edu.relavantCourses.map((course) => (
-                <Typography color={darkMode ? blueGrey[100] : blueGrey[900]}>
+                <Typography
+                  key={course}
+                  color={darkMode ? blueGrey[100] : blueGrey[900]}
+                >
                   {course}
                 </Typography>
               ))}
@@ -462,6 +483,7 @@ export default function Home() {
                   </Typography>
                   {edu.projects.map((project) => (
                     <Typography
+                      key={project}
                       color={darkMode ? blueGrey[100] : blueGrey[900]}
                     >
                       {project}

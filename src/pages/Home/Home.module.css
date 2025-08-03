@@ -78,6 +78,10 @@
     box-shadow: var(--template-shadows-2) !important;
 }
 
+[data-mui-color-scheme="dark"] .cardFocused {
+    box-shadow: 0 0px 2px 2px rgba(255, 255, 255, 0.1) !important;
+}
+
 .chip {
     border: none !important;
 }

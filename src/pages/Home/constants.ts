@@ -150,8 +150,10 @@ client requirements.`,
             `Improved WordPress site functionality and user experience by leveraging hooks,
 PHP functions, and JavaScript to deliver interactive, customized features.`,
             `Building custom layouts using Elementor and customized existing themes to match client
-requirements.`],
-        highlight: ["responsive UIs", "HTML, CSS, and Bootstrap", "site functionality", "Elementor"],
+requirements.`,
+            `Created and maintained custom WordPress plugins, ensuring seamless integration with client workflows while optimizing performance, SEO, and mobile responsiveness.`
+        ],
+        highlight: ["responsive UIs", "HTML, CSS, and Bootstrap", "site functionality", "Elementor", "custom WordPress plugins", "mobile responsiveness"],
         skills: [
             { name: "HTML", page: "https://www.w3schools.com/html" },
             { name: "CSS", page: "https://www.w3schools.com/css" },
@@ -240,14 +242,14 @@ to the subscribed users to the App, enhancing time scheduling experience.`
         intro: `Developed essential modules for an E Commerce Website using Elementor`,
         introHighlights: [`E Commerce`, `Elementor`],
         work: [
-            ` Integrated the Login Form into a custom modal popup, replacing the default login flow for a
+            `Integrated the Login Form into a custom modal popup, replacing the default login flow for a
 smoother and more modern user experience.`,
             `Redesigned the entire Filter Structure of the website’s listing pages based on Figma designs,
     ensuring a clean and intuitive user interface aligned with UX best practices.`,
             `Reorganized the "Post an Ad" process, splitting a single long form into multiple logical sections,
 improving user flow and aligning with the client’s updated content strategy.`,
             `Customized the default "Your Ads" plugin page by enhancing it to display additional post details,
-    improving usability and providing more information to users managing their ads.`
+    improving usability and providing more information to users managing their ads.`,
         ],
         highlights: [
             `Login Form`,
