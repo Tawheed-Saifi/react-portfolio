@@ -453,9 +453,19 @@ export default function Home() {
               >
                 {edu.degree}
               </Typography>
-              <Typography sx={{ fontSize: 18, color: "gray", lineHeight: 1.3 }}>
-                {edu.course}
-              </Typography>
+              <Box display="flex" justifyContent="space-between">
+                <Typography
+                  sx={{ fontSize: 18, color: "gray", lineHeight: 1.3 }}
+                >
+                  {edu.course}
+                </Typography>
+                <Typography
+                  color={darkMode ? grey[500] : grey[600]}
+                  sx={{ fontSize: 16, lineHeight: 1.3 }}
+                >
+                  {edu.score}
+                </Typography>
+              </Box>
               <Typography
                 fontWeight={500}
                 color={darkMode ? grey[200] : grey[900]}

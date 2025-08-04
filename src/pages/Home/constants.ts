@@ -153,7 +153,7 @@ PHP functions, and JavaScript to deliver interactive, customized features.`,
 requirements.`,
             `Created and maintained custom WordPress plugins, ensuring seamless integration with client workflows while optimizing performance, SEO, and mobile responsiveness.`
         ],
-        highlight: ["responsive UIs", "HTML, CSS, and Bootstrap", "site functionality", "Elementor", "custom WordPress plugins", "mobile responsiveness"],
+        highlight: ["responsive UIs", "HTML, CSS, and Bootstrap", "site functionality", "user experience", "Elementor", "custom WordPress plugins", "mobile responsiveness"],
         skills: [
             { name: "HTML", page: "https://www.w3schools.com/html" },
             { name: "CSS", page: "https://www.w3schools.com/css" },
@@ -269,6 +269,7 @@ const Education = [
         university: "Anna University",
         location: "Chennai, India.",
         duration: "2018 - 2022",
+        score: "8.11/10 CGPA",
         relavantCourses: [
             `Data Structures & Algorithms`,
             `Web Development`
@@ -286,6 +287,7 @@ const Education = [
         school: "Dhanish Matriculation Higher Secondary School",
         location: "Chennai, India.",
         duration: "2018",
+        score: "92%",
         relavantCourses: [
             `Physics`,
             `Chemistry`,
