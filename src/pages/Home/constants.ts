@@ -174,7 +174,7 @@ const Projects = [
     {
         name: "ERP System",
         techUsed: 'Next JS and Node JS',
-        intro: `Developed key modules for a custom ERP system including Retail, Inventory, Procurement, and
+        intro: `Developed key modules for an ERP system including Retail, Inventory, Procurement, and
 Production, using React, Node JS, Express, Sequelize, and PostgreSQL.`,
         introHighlights: [`Retail, Inventory, Procurement, and Production`, `React, Node JS, Express, Sequelize, and PostgreSQL`],
         work: [
@@ -186,7 +186,7 @@ module, supporting the custom manufacturing workflow.`,
 functionalities within the POS Form, enabling saving user choices.`,
             `Developed Import Excel Form in Admin module, allowing users to bulk submit forms, instead of
 individual submissions, making it faster for entry of data.`,
-            `Integrated image upload capability in the Procurement module 's Order Form, improving vendor
+            `Integrated image upload capability in the Procurement module's Order Form, improving vendor
 communication and documentation.`,
             `Created a centralized Global Search feature in the Application that would route using indexed API
 endpoints for the given Invoice Number, improving navigation and accessibility.`,
@@ -194,6 +194,8 @@ endpoints for the given Invoice Number, improving navigation and accessibility.`
 data integrity.`,
             `Built Stock Management Forms for Rate Changes and Inter Stock Transfers in the Inventory
 Module, streamlining internal inventory operations.`,
+            `Developed the Super Admin module to streamline administrative control over tenant activation, database connection strings, 
+and system logs, enabling efficient multi-tenant management.`,
             `Developed Company Registration Form, enabling for companies to be registered for the
 application.`
         ],
@@ -202,7 +204,7 @@ application.`
             `WhatsApp messaging`,
             `Process, Routing, Design and Style Forms`,
             `Production module`,
-            `""Make to Order""`,
+            `"Make to Order"`,
             `Retail module`,
             `Wishlist and Cart functionalities`,
             `POS Form`,
@@ -216,7 +218,8 @@ application.`
             `Rate Changes`, `Inter Stock Transfers`, `Inventory Module`,
             `Super Admin module`,
             `tenant activation`,
-            `database connection strings`, `system logs`,
+            `database connection strings`,
+            `system logs`,
             `Company Registration Form`
         ]
     },

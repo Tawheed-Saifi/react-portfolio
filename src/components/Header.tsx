@@ -8,7 +8,7 @@ import profileImage from "@/assets/profile_pic.jpg";
 function Header() {
   const isMobile = useRef<boolean>(window.innerWidth < 768);
   return (
-    <Container sx={{ px: 3, pt: 2 }}>
+    <Container className="app-container" sx={{ px: 3, pt: 2 }}>
       {isMobile.current && (
         <Typography variant={isMobile.current ? "h4" : "h2"} lineHeight={1}>
           Mohammed Tawheed

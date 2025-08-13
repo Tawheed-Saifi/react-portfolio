@@ -14,6 +14,7 @@ import { blueGrey, grey } from "@mui/material/colors";
 import useDarkMode from "@/hooks/darkModeHook";
 import ColorModeIconDropdown from "@/theme/ColorModeIconDropdown";
 import heroImage from "@/assets/open_pic.jpg";
+import HeaderText from "@/components/HeaderText";
 
 export default function Home() {
   const [showHeaderContent, setShowHeaderContent] = useState<boolean>(false);
@@ -52,7 +53,7 @@ export default function Home() {
     const ele = itemsRef.current[index];
     if (ele)
       window.scrollTo({
-        top: ele.getBoundingClientRect().top + window.scrollY - 100,
+        top: ele.getBoundingClientRect().top + window.scrollY - 120,
         behavior: "smooth",
       });
   };
@@ -106,7 +107,7 @@ export default function Home() {
   console.log("activeSection", activeSection);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
       {/* <Box
         sx={{
           display: { xs: "flex", sm: "none" },
@@ -211,144 +212,227 @@ export default function Home() {
             <ColorModeIconDropdown sx={{ mx: 2 }} />
           ))}
       </Box>
-      <Grid
-        ref={(ref) => {
-          if (ref) itemsRef.current[0] = ref;
-        }}
-        container
-        spacing={2}
-        columns={12}
-      >
-        <Grid size={{ xs: 12, md: 4 }}>
-          <img
-            src={heroImage}
-            alt="my pic"
-            loading="lazy"
-            className={styles.openPic}
-          />
-        </Grid>
-        <Grid className={styles.aboutMeWrap} size={{ xs: 12, md: 8 }}>
-          {AboutMe.details.map((para, i) => (
-            <Paper
-              elevation={0}
-              className={styles.aboutMePara}
-              sx={{
-                paddingInline: 2,
-                paddingBlock: 1,
-                transition: "box-shadow 0.3s ease",
-                "&:hover": {
-                  boxShadow: darkMode
-                    ? "0 0px 2px 2px rgba(255, 255, 255, 0.1)"
-                    : 2,
-                },
-                cursor: "pointer",
-              }}
-              key={i}
-            >
-              <HighLightTypography
-                component={"p"}
-                fontSize={15}
-                marginBottom={1}
-                text={para}
-                highlight={AboutMe.highlights}
-                highlightProps={{
-                  sx: { fontWeight: 550, color: darkMode ? "whitesmoke" : "" },
+      <Box>
+        {/* <Typography
+          variant="h4"
+          marginBottom={1}
+          color={darkMode ? blueGrey[50] : blueGrey[900]}
+        >
+          About Me
+        </Typography> */}
+        <HeaderText darkMode={darkMode}>About Me</HeaderText>
+        <Grid
+          ref={(ref) => {
+            if (ref) itemsRef.current[0] = ref;
+          }}
+          container
+          spacing={2}
+          columns={12}
+        >
+          <Grid size={{ xs: 12, md: 4 }}>
+            <img
+              src={heroImage}
+              alt="my pic"
+              loading="lazy"
+              className={styles.openPic}
+            />
+          </Grid>
+          <Grid className={styles.aboutMeWrap} size={{ xs: 12, md: 8 }}>
+            {AboutMe.details.map((para, i) => (
+              <Paper
+                elevation={0}
+                className={styles.aboutMePara}
+                sx={{
+                  paddingInline: 2,
+                  paddingBlock: 1,
+                  transition: "box-shadow 0.3s ease",
+                  "&:hover": {
+                    boxShadow: darkMode
+                      ? "0 0px 2px 2px rgba(255, 255, 255, 0.1)"
+                      : 2,
+                  },
+                  cursor: "pointer",
                 }}
-                color={darkMode ? blueGrey[100] : blueGrey[900]}
-              />
-            </Paper>
+                key={i}
+              >
+                <HighLightTypography
+                  component={"p"}
+                  fontSize={"0.9375rem"}
+                  marginBottom={1}
+                  text={para}
+                  highlight={AboutMe.highlights}
+                  highlightProps={{
+                    sx: {
+                      fontWeight: 550,
+                      color: darkMode ? "whitesmoke" : "",
+                    },
+                  }}
+                  color={darkMode ? blueGrey[100] : blueGrey[900]}
+                />
+              </Paper>
+            ))}
+          </Grid>
+        </Grid>
+      </Box>
+      <Box>
+        <HeaderText darkMode={darkMode}>Experience</HeaderText>
+        <Grid
+          ref={(ref) => {
+            if (ref) itemsRef.current[1] = ref;
+          }}
+          display="flex"
+          gap={2}
+          flexDirection={"column"}
+        >
+          {Experience.map((exp, i) => (
+            <Card
+              key={exp.companyName}
+              className={
+                focusedCardKey == `experience-${i}` ? styles.cardFocused : ""
+              }
+              onMouseEnter={() => handleFocus(`experience-${i}`)}
+              onMouseLeave={() => handleBlur()}
+            >
+              <Grid container spacing={2} columns={12}>
+                <Grid size={{ xs: 12, md: 4 }}>
+                  {/* <img src="public/office pic.jpg" /> */}
+                  <Typography
+                    variant="h6"
+                    // color="#202020"
+                    fontWeight={"500"}
+                    marginBottom={0}
+                  >
+                    {exp.role}
+                  </Typography>
+                  <Typography color="text.secondary">{exp.duration}</Typography>
+                  <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    gap={1}
+                    marginTop={1}
+                  >
+                    {roleInfos.map(
+                      (infoType) =>
+                        exp[infoType.name] && (
+                          <Grid
+                            key={infoType.name}
+                            display="flex"
+                            gap={1}
+                            flexWrap={"wrap"}
+                          >
+                            {exp[infoType.name]?.map((skill) => (
+                              <Chip
+                                key={skill.name}
+                                label={skill.name}
+                                // sx={{
+                                //   backgroundColor: infoType.backgroundColor,
+                                //   borderColor: infoType.backgroundColor,
+                                //   color: `${infoType.color} !important`,
+                                //   // "&:hover": {
+                                //   //   backgroundColor: infoType.backgroundColor,
+                                //   //   opacity: 0.8,
+                                //   // },
+                                // }}
+                                // color={infoType.color}
+                                className={`${styles.chip} ${
+                                  styles[infoType.name]
+                                }`}
+                                onClick={() =>
+                                  skill.page
+                                    ? window.open(skill.page, "_blank")
+                                    : null
+                                }
+                              />
+                            ))}
+                          </Grid>
+                        )
+                    )}
+                  </Box>
+                </Grid>
+                <Grid size={{ xs: 12, md: 8 }}>
+                  <Typography
+                    variant={isMobile.current ? "h6" : "h5"}
+                    sx={{ marginBottom: "4px" }}
+                    // color="#202020"
+                    fontWeight={"600"}
+                  >
+                    {exp.companyName}
+                  </Typography>
+                  <Typography component="div" variant="body1" paddingBlock={0}>
+                    <ul style={{ paddingLeft: 20, marginBlock: 0 }}>
+                      {exp.reponsibilities.map((resp, i) => (
+                        <HighLightTypography
+                          key={i}
+                          text={resp}
+                          highlight={exp.highlight}
+                          highlightProps={{
+                            sx: {
+                              fontWeight: 550,
+                              color: darkMode ? "whitesmoke" : "",
+                            },
+                          }}
+                          color={darkMode ? blueGrey[100] : blueGrey[900]}
+                          component="li"
+                        />
+                      ))}
+                    </ul>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Card>
           ))}
         </Grid>
-      </Grid>
-      <Grid
-        ref={(ref) => {
-          if (ref) itemsRef.current[1] = ref;
-        }}
-        display="flex"
-        gap={2}
-        flexDirection={"column"}
-      >
-        {Experience.map((exp, i) => (
-          <Card
-            key={exp.companyName}
-            className={
-              focusedCardKey == `experience-${i}` ? styles.cardFocused : ""
-            }
-            onMouseEnter={() => handleFocus(`experience-${i}`)}
-            onMouseLeave={() => handleBlur()}
-          >
-            <Grid container spacing={2} columns={12}>
-              <Grid size={{ xs: 12, md: 4 }}>
-                {/* <img src="public/office pic.jpg" /> */}
-                <Typography
-                  variant="h6"
-                  // color="#202020"
-                  fontWeight={"500"}
-                  marginBottom={0}
-                >
-                  {exp.role}
-                </Typography>
-                <Typography color="text.secondary">{exp.duration}</Typography>
-                <Box
-                  display={"flex"}
-                  flexDirection={"column"}
-                  gap={1}
-                  marginTop={1}
-                >
-                  {roleInfos.map(
-                    (infoType) =>
-                      exp[infoType.name] && (
-                        <Grid
-                          key={infoType.name}
-                          display="flex"
-                          gap={1}
-                          flexWrap={"wrap"}
-                        >
-                          {exp[infoType.name]?.map((skill) => (
-                            <Chip
-                              key={skill.name}
-                              label={skill.name}
-                              // sx={{
-                              //   backgroundColor: infoType.backgroundColor,
-                              //   borderColor: infoType.backgroundColor,
-                              //   color: `${infoType.color} !important`,
-                              //   // "&:hover": {
-                              //   //   backgroundColor: infoType.backgroundColor,
-                              //   //   opacity: 0.8,
-                              //   // },
-                              // }}
-                              // color={infoType.color}
-                              className={`${styles.chip} ${
-                                styles[infoType.name]
-                              }`}
-                              onClick={() =>
-                                skill.page
-                                  ? window.open(skill.page, "_blank")
-                                  : null
-                              }
-                            />
-                          ))}
-                        </Grid>
-                      )
-                  )}
-                </Box>
-              </Grid>
-              <Grid size={{ xs: 12, md: 8 }}>
-                <Typography
-                  variant={isMobile.current ? "h6" : "h5"}
-                  sx={{ marginBottom: "4px" }}
-                  // color="#202020"
-                  fontWeight={"600"}
-                >
-                  {exp.companyName}
-                </Typography>
-                <Typography component="div" variant="body1" paddingBlock={0}>
+      </Box>
+      <Box>
+        <HeaderText darkMode={darkMode}>Projects</HeaderText>
+        <Grid
+          ref={(ref) => {
+            if (ref) itemsRef.current[2] = ref;
+          }}
+          display="flex"
+          flexDirection="column"
+          gap={2}
+        >
+          {Projects.map((project, i) => (
+            <Card
+              key={project.name}
+              className={
+                focusedCardKey == `projects-${i}` ? styles.cardFocused : ""
+              }
+              onMouseEnter={() => handleFocus(`projects-${i}`)}
+              onMouseLeave={() => handleBlur()}
+            >
+              <Grid display="flex" flexDirection="column" gap={1}>
+                <Grid>
+                  <Typography
+                    variant={isMobile.current ? "h6" : "h4"}
+                    marginBottom={0}
+                  >
+                    {project.name}
+                  </Typography>
+                  <Typography variant="body1" color="gray">
+                    {project.techUsed}
+                  </Typography>
+                </Grid>
+                <HighLightTypography
+                  variant="body1"
+                  text={project.intro}
+                  highlight={project.introHighlights}
+                  highlightProps={{
+                    sx: {
+                      fontWeight: 550,
+                      color: darkMode ? "whitesmoke" : "",
+                    },
+                  }}
+                />
+                <Grid>
                   <ul style={{ paddingLeft: 20, marginBlock: 0 }}>
-                    {exp.reponsibilities.map((resp, i) => (
+                    {project.work.map((work, i) => (
                       <HighLightTypography
                         key={i}
-                        text={resp}
-                        highlight={exp.highlight}
+                        text={work}
+                        component={"li"}
+                        highlight={project.highlights}
                         highlightProps={{
                           sx: {
                             fontWeight: 550,
@@ -356,155 +440,101 @@ export default function Home() {
                           },
                         }}
                         color={darkMode ? blueGrey[100] : blueGrey[900]}
-                        component="li"
                       />
                     ))}
                   </ul>
-                </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-          </Card>
-        ))}
-      </Grid>
-      <Grid
-        ref={(ref) => {
-          if (ref) itemsRef.current[2] = ref;
-        }}
-        display="flex"
-        flexDirection="column"
-        gap={2}
-      >
-        {Projects.map((project, i) => (
-          <Card
-            key={project.name}
-            className={
-              focusedCardKey == `projects-${i}` ? styles.cardFocused : ""
-            }
-            onMouseEnter={() => handleFocus(`projects-${i}`)}
-            onMouseLeave={() => handleBlur()}
-          >
-            <Grid display="flex" flexDirection="column" gap={1}>
-              <Grid>
-                <Typography
-                  variant={isMobile.current ? "h6" : "h4"}
-                  marginBottom={0}
-                >
-                  {project.name}
-                </Typography>
-                <Typography variant="body1" color="gray">
-                  {project.techUsed}
-                </Typography>
-              </Grid>
-              <HighLightTypography
-                variant="body1"
-                text={project.intro}
-                highlight={project.introHighlights}
-                highlightProps={{
-                  sx: { fontWeight: 550, color: darkMode ? "whitesmoke" : "" },
-                }}
-              />
-              <Grid>
-                <ul style={{ paddingLeft: 20, marginBlock: 0 }}>
-                  {project.work.map((work, i) => (
-                    <HighLightTypography
-                      key={i}
-                      text={work}
-                      component={"li"}
-                      highlight={project.highlights}
-                      highlightProps={{
-                        sx: {
-                          fontWeight: 550,
-                          color: darkMode ? "whitesmoke" : "",
-                        },
-                      }}
-                      color={darkMode ? blueGrey[100] : blueGrey[900]}
-                    />
-                  ))}
-                </ul>
-              </Grid>
-            </Grid>
-          </Card>
-        ))}
-      </Grid>
-      <Grid
-        ref={(ref) => {
-          if (ref) itemsRef.current[3] = ref;
-        }}
-        container
-        columns={12}
-        spacing={2}
-      >
-        {Education.map((edu, i) => (
-          <Grid key={i} size={{ xs: 12, md: 6 }}>
-            <Card
-              className={
-                focusedCardKey == `education-${i}` ? styles.cardFocused : ""
-              }
-              sx={{ height: "100%" }}
-              onMouseEnter={() => handleFocus(`education-${i}`)}
-              onMouseLeave={() => handleBlur()}
-            >
-              <Typography
-                sx={{
-                  fontWeight: 600,
-                  fontSize: { xs: 14, md: 16 },
-                  lineHeight: 1.2,
-                }}
-              >
-                {edu.degree}
-              </Typography>
-              <Box display="flex" justifyContent="space-between">
-                <Typography
-                  sx={{ fontSize: 18, color: "gray", lineHeight: 1.3 }}
-                >
-                  {edu.course}
-                </Typography>
-                <Typography
-                  color={darkMode ? grey[500] : grey[600]}
-                  sx={{ fontSize: 16, lineHeight: 1.3 }}
-                >
-                  {edu.score}
-                </Typography>
-              </Box>
-              <Typography
-                fontWeight={500}
-                color={darkMode ? grey[200] : grey[900]}
-              >
-                {edu.school ?? `${edu.college} - ${edu.university}`}
-              </Typography>
-              <Typography color={darkMode ? blueGrey[100] : blueGrey[900]}>
-                {edu.location}
-              </Typography>
-              <Typography fontWeight={600} fontSize={15}>
-                Courses:
-              </Typography>
-              {edu.relavantCourses.map((course) => (
-                <Typography
-                  key={course}
-                  color={darkMode ? blueGrey[100] : blueGrey[900]}
-                >
-                  {course}
-                </Typography>
-              ))}
-              {edu.projects && (
-                <>
-                  <Typography fontWeight={600} fontSize={15}>
-                    Projects:
-                  </Typography>
-                  {edu.projects.map((project) => (
-                    <Typography
-                      key={project}
-                      color={darkMode ? blueGrey[100] : blueGrey[900]}
-                    >
-                      {project}
-                    </Typography>
-                  ))}
-                </>
-              )}
             </Card>
-          </Grid>
-        ))}
-      </Grid>
+          ))}
+        </Grid>
+      </Box>
+      <Box>
+        <HeaderText darkMode={darkMode}>Education</HeaderText>
+        <Grid
+          ref={(ref) => {
+            if (ref) itemsRef.current[3] = ref;
+          }}
+          container
+          columns={12}
+          spacing={2}
+        >
+          {Education.map((edu, i) => (
+            <Grid key={i} size={{ xs: 12, md: 6 }}>
+              <Card
+                className={
+                  focusedCardKey == `education-${i}` ? styles.cardFocused : ""
+                }
+                sx={{ height: "100%" }}
+                onMouseEnter={() => handleFocus(`education-${i}`)}
+                onMouseLeave={() => handleBlur()}
+              >
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: { xs: "0.875rem", md: "1rem" },
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {edu.degree}
+                </Typography>
+                <Box display="flex" justifyContent="space-between">
+                  <Typography
+                    sx={{
+                      fontSize: "1.125rem",
+                      color: "gray",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {edu.course}
+                  </Typography>
+                  <Typography
+                    color={darkMode ? grey[500] : grey[600]}
+                    sx={{ fontSize: "1rem", lineHeight: 1.3 }}
+                  >
+                    {edu.score}
+                  </Typography>
+                </Box>
+                <Typography
+                  fontWeight={500}
+                  color={darkMode ? grey[200] : grey[900]}
+                >
+                  {edu.school ?? `${edu.college} - ${edu.university}`}
+                </Typography>
+                <Typography color={darkMode ? blueGrey[100] : blueGrey[900]}>
+                  {edu.location}
+                </Typography>
+                <Typography fontWeight={600} fontSize={"0.9375rem"}>
+                  Courses:
+                </Typography>
+                {edu.relavantCourses.map((course) => (
+                  <Typography
+                    key={course}
+                    color={darkMode ? blueGrey[100] : blueGrey[900]}
+                  >
+                    {course}
+                  </Typography>
+                ))}
+                {edu.projects && (
+                  <>
+                    <Typography fontWeight={600} fontSize={"0.9375rem"}>
+                      Projects:
+                    </Typography>
+                    {edu.projects.map((project) => (
+                      <Typography
+                        key={project}
+                        color={darkMode ? blueGrey[100] : blueGrey[900]}
+                      >
+                        {project}
+                      </Typography>
+                    ))}
+                  </>
+                )}
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 }
