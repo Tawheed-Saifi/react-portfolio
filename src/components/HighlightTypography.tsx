@@ -1,5 +1,4 @@
 import Typography, { TypographyProps } from "@mui/material/Typography";
-import React from "react";
 
 interface HighLightTypographyProps extends TypographyProps {
   text: string;
@@ -20,20 +19,17 @@ function HighLightTypography({
   const parts = text.split(regex);
 
   return (
-    <>
-      {/* {props.component == "li" && <span>● </span>} */}
-      <Typography {...props}>
-        {parts.map((part) =>
-          highlight.includes(part) ? (
-            <Typography key={part} component="span" {...highlightProps}>
-              {part}
-            </Typography>
-          ) : (
-            part
-          )
-        )}
-      </Typography>
-    </>
+    <Typography {...props}>
+      {parts.map((part) =>
+        highlight.includes(part) ? (
+          <Typography key={part} component="span" {...highlightProps}>
+            {part}
+          </Typography>
+        ) : (
+          part
+        )
+      )}
+    </Typography>
   );
 }
 

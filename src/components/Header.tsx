@@ -2,7 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import profileImage from "@/assets/profile_pic.jpg";
 
 function Header() {
